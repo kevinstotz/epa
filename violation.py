@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/python
 import re
 import sys
 import json
@@ -175,6 +175,13 @@ def update_record(data, url):
 
      return mysql.custom_query(query)  
 
+def get_stats():
+        records_remaining = mysql.custom_query('SELECT count(id) FROM ' + STATUS_TABLE + '  WHERE ' + TABLE + '=0')
+        records_completed = mysql.custom_query('SELECT count(id) FROM ' + STATUS_TABLE + '  WHERE ' + TABLE + '=1')
+        records_total = mysql.custom_query('SELECT count(id) FROM ' + STATUS_TABLE)
+
+        return records_total,records_completed,records_remaining
+
 
 def get_next():
         query_select = 'SELECT ' + FIELDS['1'] + ' FROM ' + STATUS_TABLE + '  WHERE ' + TABLE + '=0 order by id ASC limit 1 '
@@ -220,8 +227,9 @@ def get_contents(url):
 
 id=1
 while (pwsid != 0):
+        total, complete, remaining = get_stats()
         pwsid = get_next()
-        print('({}) PWSID={}'.format(id, pwsid))
+        print('ID={}: (record {} of {}) PWSID={}'.format(id, remaining, total, pwsid))
         id = id + 1
         if pwsid == None:
             print("done")
