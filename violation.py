@@ -123,7 +123,7 @@ def parse_json(json_data, url):
 def insert_record(data, url):
      query = ''
      for key, value in FIELDS.items():
-         cleaned = re.sub(r'[^\u0000-\u007F]+', '', str(data[value]), flags=re.IGNORECASE)
+         cleaned = re.sub(r'[^\u0000-\uFFFF]+', '', str(data[value]), flags=re.IGNORECASE)
          query = query + value + '="' + cleaned + '", '
      query = 'INSERT INTO ' + TABLE + ' SET ' + query + ' url="' + str(url) + '"'
      insert_into_db(query)
