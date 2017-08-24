@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 import re
 import sys
 import json
@@ -185,7 +185,7 @@ def get_stats():
 
 
 def get_next():
-        query_select = 'SELECT ' + FIELDS['1'] + ' FROM ' + STATUS_TABLE + '  WHERE ' + TABLE + '=0 order by id ASC limit 1 '
+        query_select = 'SELECT ' + FIELDS['1'] + ', ' + TABLE + ' FROM ' + STATUS_TABLE + ' WHERE ' + TABLE + '=0 order by ' + FIELDS['1'] + ' ASC limit 1 FOR UPDATE'
         query_update = 'UPDATE ' + STATUS_TABLE + ' set ' + TABLE + '=' + str(100) + ' WHERE ' + FIELDS['1'] + '=%s limit 1'
         res = mysql.get_next(query_select, query_update)
         return res

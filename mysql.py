@@ -125,8 +125,8 @@ class MysqlPython(object):
     def get_next(self, query_select, query_update):
 
         self.__open()
-        self.__session.execute("SET autocommit=0")
-        self.__session.execute("LOCK TABLES status WRITE")
+        #self.__session.execute("SET autocommit=0")
+        #self.__session.execute("LOCK TABLES status WRITE")
         self.__session.execute(query_select)
         number_rows = self.__session.rowcount
         number_columns = len(self.__session.description)
@@ -137,11 +137,11 @@ class MysqlPython(object):
             result = [item[0] for item in self.__session.fetchall()]
 
         if len(result) > 0:
-            self.__session.execute(query_update, (result[0],))
+            self.__session.execute(query_update, (result[0][0],))
         self.__session.execute("COMMIT") 
-        self.__session.execute("UNLOCK TABLES") 
+        #self.__session.execute("UNLOCK TABLES") 
         self.__close()
-        return result[0]
+        return result[0][0]
 
     def custom_insert(self, query):
 
