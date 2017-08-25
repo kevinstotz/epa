@@ -40,56 +40,55 @@ def let_user_pick(tables):
 
     if i == 1:
         table="VIOLATION_ENF_ASSOC"
-        STATUS_TABLE="status." + table
+        STATUS_TABLE=table + '_status'
         primary_keys = {'1': 'PWSID','2': 'VIOLATION_ID','3': 'ENFORCEMENT_ID'}
         fields = {'1': 'PWSID','2': 'VIOLATION_ID','3': 'ENFORCEMENT_ID'}
 
     if i == 2:
         table="LCR_SAMPLE"
-        STATUS_TABLE="status." + table
+        STATUS_TABLE=table + '_status'
         primary_keys  = {'1': 'PWSID', '2': 'SAMPLE_ID'}
         fields = {'1': 'PWSID','2': 'SAMPLE_ID','3': 'SAMPLING_END_DATE','4':'SAMPLING_START_DATE','5':'RECONCILIATION_ID','6':'PRIMACY_AGENCY_CODE','7':'EPA_REGION'}
 
     if i == 3:
         table="TREATMENT"
-        STATUS_TABLE="status." + table
+        STATUS_TABLE=table + '_status'
         primary_keys = {'1': 'PWSID', '2': 'TREATMENT_ID','3': 'FACILITY_ID'}
         fields = {'1': 'PWSID','2': 'TREATMENT_ID','3': 'FACILITY_ID','4':'TREATMENT_OBJECTIVE_CODE','5':'TREATMENT_PROCESS_CODE','6':'COMMENTS_TEXT'}
 
     if i == 4:
         table = "LCR_SAMPLE_RESULT"
-        STATUS_TABLE="status." + table
-        STATUS_TABLE=table
+        STATUS_TABLE=table + '_status'
         primary_keys = {'1': 'PWSID', '2': 'SAMPLE_ID'}
         fields = {'1': 'PWSID','2': 'SAMPLE_ID','3': 'EPA_REGION','4':'PRIMACY_AGENCY_CODE','5':'CONTAMINANT_CODE','6':'RESULT_SIGN_CODE','7':'SAMPLE_MEASURE','8':'SAR_ID','9':'UNIT_OF_MEASURE'}
 
     if i == 5:
         table = "SERVICE_AREA"
-        STATUS_TABLE="status." + table
+        STATUS_TABLE=table + '_status'
         primary_keys = {'1': 'PWSID'} 
         fields = {'1': 'PWSID','2': 'EPA_REGION','3': 'IS_PRIMARY_SERVICE_AREA_CODE','4':'PRIMACY_AGENCY_CODE','5':'PWS_ACTIVITY_CODE','6':'PWS_TYPE_CODE', '7':'SERVICE_AREA_TYPE_CODE'}
 
     if i == 6:
         table = "GEOGRAPHIC_AREA"
-        STATUS_TABLE="status." + table
+        STATUS_TABLE=table = '_status'
         primary_keys = {'1': 'PWSID','2': 'GEO_ID'} 
         fields = {'1': 'PWSID','2': 'GEO_ID','3': 'ANSI_ENTITY_CODE','4':'AREA_TYPE_CODE','5':'CITY_SERVED','6':'COUNTY_SERVED', '7':'EPA_REGION','8': 'PRIMACY_AGENCY_CODE','9': 'PWS_ACTIVITY_CODE','10': 'PWS_TYPE_CODE','11':'STATE_SERVED','12':'TRIBAL_CODE','13':'ZIP_CODE_SERVED'}
 
     if i == 7:
         table = "ENFORCEMENT_ACTION"
-        STATUS_TABLE="status." + table
+        STATUS_TABLE=table + '_status'
         primary_keys = {'1': 'PWSID', '2': 'ENFORCEMENT_ID'}
         fields = {'1': 'PWSID','2': 'ENFORCEMENT_ID','3': 'ORIGINATOR_CODE','4':'ENFORCEMENT_DATE','5':'ENFORCEMENT_ACTION_TYPE_CODE','6':'ENFORCEMENT_COMMENT_TEXT'}
 
     if i == 8:
         table = "VIOLATION"
-        STATUS_TABLE="status." + table
+        STATUS_TABLE=table + '_status'
         primary_keys = {'1': 'PWSID', '2': 'VIOLATION_ID'}
         fields = {'1':  'PWSID', '2':  'VIOLATION_ID', '3':  'COMPL_PER_END_DATE', '4':  'CONTAMINANT_CODE', '5':  'CORRECTIVE_ACTION_ID', '6':  'EPA_REGION', '7':  'FACILITY_ID', '8':  'IS_HEALTH_BASED_IND', '9':  'IS_MAJOR_VIOL_IND', '10':  'LATEST_ENFORCEMENT_ID', '11':  'ORIGINATOR_CODE', '12':  'POPULATION_SERVED_COUNT', '13':  'POP_CAT_5_CODE', '14':  'PRIMACY_AGENCY_CODE', '15':  'PRIMARY_SOURCE_CODE', '16':  'PUBLIC_NOTIFICATION_TIER', '17':  'COMPLIANCE_STATUS_CODE', '18':  'PWS_ACTIVITY_CODE', '19':  'PWS_DEACTIVATION_DATE', '20':  'PWS_TYPE_CODE', '21':  'RTC_DATE', '22':  'RTC_ENFORCEMENT_ID', '23':  'RULE_CODE', '24':  'RULE_FAMILY_CODE', '25':  'RULE_GROUP_CODE', '26':  'SAMPLE_RESULT_ID', '27':  'SEVERITY_IND_CNT', '28':  'STATE_MCL', '29':  'UNIT_OF_MEASURE', '30':  'VIOLATION_CATEGORY_CODE', '31':  'VIOLATION_CODE', '32':  'COMPL_PER_BEGIN_DATE', '33':  'VIOL_MEASURE'}
 
     if i == 9:
         table = "WATER_SYSTEM_FACILITY"
-        STATUS_TABLE="status." + table
+        STATUS_TABLE=table + '_status'
         primary_keys = {'1': 'PWSID', '2': 'FACILITY_ID'}
         fields = {'1': 'PWSID', '2': 'FACILITY_ID', '3': 'FACILITY_ACTIVITY_CODE', '4': 'FACILITY_DEACTIVATION_DATE', '5': 'EPA_REGION', '6': 'FACILITY_NAME', '7': 'FACILITY_TYPE_CODE', '8': 'FILTRATION_STATUS_CODE', '9': 'IS_SOURCE_IND', '10': 'IS_SOURCE_TREATED_IND', '11': 'PRIMACY_AGENCY_CODE', '12': 'AVAILABILITY_CODE', '13': 'PWS_ACTIVITY_CODE', '14': 'PWS_DEACTIVATION_DATE', '15': 'PWS_TYPE_CODE', '16': 'SELLER_PWSID', '17': 'SELLER_PWS_NAME', '18': 'SELLER_TREATMENT_CODE', '19': 'STATE_FACILITY_ID', '20': 'SUBMISSION_STATUS_CODE', '21': 'WATER_TYPE_CODE'}
 
