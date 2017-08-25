@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/python
 import re
 import sys
 import json
@@ -70,7 +70,7 @@ def let_user_pick(tables):
 
     if i == 6:
         table = "GEOGRAPHIC_AREA"
-        STATUS_TABLE=table = '_status'
+        STATUS_TABLE=table + '_status'
         primary_keys = {'1': 'PWSID','2': 'GEO_ID'} 
         fields = {'1': 'PWSID','2': 'GEO_ID','3': 'ANSI_ENTITY_CODE','4':'AREA_TYPE_CODE','5':'CITY_SERVED','6':'COUNTY_SERVED', '7':'EPA_REGION','8': 'PRIMACY_AGENCY_CODE','9': 'PWS_ACTIVITY_CODE','10': 'PWS_TYPE_CODE','11':'STATE_SERVED','12':'TRIBAL_CODE','13':'ZIP_CODE_SERVED'}
 
