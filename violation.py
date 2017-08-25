@@ -190,6 +190,7 @@ def update_record(data, url):
 
 def get_stats():
         sql = 'SELECT count(id) FROM ' + STATUS_TABLE + '  WHERE ' + TABLE + '=0'
+        print(sql)
         records_remaining = mysql.custom_query(sql)
         sql = 'SELECT count(id) FROM ' + STATUS_TABLE + '  WHERE ' + TABLE + '=1'
         records_completed = mysql.custom_query(sql)
