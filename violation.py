@@ -138,7 +138,6 @@ def insert_record(data, url):
      query = ''
      for key, value in FIELDS.items():
          d = data[value]
-         print(type(d))
          if type(d) == 'NoneType':
             pass
          elif type(d) == int or d == 'NoneType':
@@ -147,7 +146,6 @@ def insert_record(data, url):
             d = d.encode('utf-8', errors='replace')
          else:
             pass
-         print(d)
             #d = d.decode('unicode_escape').encode('ascii','ignore')
          query = query + value + '="' + str(d) + '", '
      query = 'INSERT INTO ' + TABLE + ' SET ' + query + ' url="' + str(url) + '"'
@@ -183,7 +181,6 @@ def update_record(data, url):
      i = 1
      for key, value in FIELDS.items():
          d = data[value]
-         print(type(d))
          if type(d) == 'NoneType':
             pass  
          elif type(d) == int or d == 'NoneType':
@@ -192,7 +189,6 @@ def update_record(data, url):
             d = d.encode('utf-8', errors='replace')
          else:
             pass
-         print(d)
          query = query + value + '="' + str(d) + '" '
          if i < len(FIELDS):
              query = query + ', '
