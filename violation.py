@@ -1,4 +1,5 @@
-#!/usr/bin/python3
+#!/usr/bin/python
+import codecs
 import re
 import sys
 import json
@@ -121,7 +122,8 @@ def insert_into_db(query):
 
 
 def parse_json(json_data, url):
-    data = json.loads(json_data)
+    print(json_data.encode('utf-8', errors='replace'))
+    data = json.loads(str(json_data))
 
     for record in data:
        if find_record(record) == 0:
@@ -135,8 +137,19 @@ def parse_json(json_data, url):
 def insert_record(data, url):
      query = ''
      for key, value in FIELDS.items():
-         cleaned = re.sub(r'[^\u0000-\uFFFF]+', '', str(data[value]), flags=re.IGNORECASE)
-         query = query + value + '="' + cleaned + '", '
+         d = data[value]
+         print(type(d))
+         if type(d) == 'NoneType':
+            pass
+         elif type(d) == int or d == 'NoneType':
+            pass
+         elif type(d) == unicode:
+            d = d.encode('utf-8', errors='replace')
+         else:
+            pass
+         print(d)
+            #d = d.decode('unicode_escape').encode('ascii','ignore')
+         query = query + value + '="' + str(d) + '", '
      query = 'INSERT INTO ' + TABLE + ' SET ' + query + ' url="' + str(url) + '"'
      print(query)
      insert_into_db(query)
@@ -165,11 +178,22 @@ def find_record(data):
 
 
 def update_record(data, url):
-     query= 'UPDATE ' + TABLE + ' SET '
 
+     query= 'UPDATE ' + TABLE + ' SET '
      i = 1
      for key, value in FIELDS.items():
-         query = query + value + '="' + str(data[value]) + '" '
+         d = data[value]
+         print(type(d))
+         if type(d) == 'NoneType':
+            pass  
+         elif type(d) == int or d == 'NoneType':
+            pass
+         elif type(d) == unicode:
+            d = d.encode('utf-8', errors='replace')
+         else:
+            pass
+         print(d)
+         query = query + value + '="' + str(d) + '" '
          if i < len(FIELDS):
              query = query + ', '
          i = i + 1
@@ -186,7 +210,8 @@ def update_record(data, url):
                query = query + value + '="' + str(data[value]) + '" LIMIT 1'
              i = i + 1
 
-     return mysql.custom_query(query)  
+     print(query)
+     return mysql.custom_query(query)
 
 def get_stats():
         sql = 'SELECT count(id) FROM ' + STATUS_TABLE + '  WHERE ' + TABLE + '=0'
@@ -267,7 +292,7 @@ while (pwsid != 0):
         results, contents = get_contents(url)
         print("results=",results)
         if results > 0:
-            parse_json(str(contents), url)
+            parse_json(contents.encode('utf-8', errors='replace'), url)
             update_status_in_db(pwsid, 1)
         if results == 10:
             update_status_in_db(pwsid, 10)
