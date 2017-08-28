@@ -103,8 +103,8 @@ def let_user_pick(tables):
     if i == 11:
         table = "ENFORCEMENT"
         STATUS_TABLE=table+'_status'
-        primary_keys = {'1': 'VIODI', '2':'PWSID', '3': 'ENFID'}
-        fields = {'1': 'VIOID', '2': 'PWSID', '3': 'ENFID', '4': 'ENFACTIONITYPE', '5': 'ENFACTIONNAME', '6': 'ENFDATE'}
+        primary_keys = {'1': 'PWSID', '2':'VIOID', '3': 'ENFID'}
+        fields = {'1': 'PWSID', '2': 'VIOID', '3': 'ENFID', '4': 'ENFACTIONTYPE', '5': 'ENFACTIONNAME', '6': 'ENFDATE'}
 
     return (STATUS_TABLE, table, primary_keys, fields)
 
