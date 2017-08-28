@@ -10,7 +10,7 @@ from time import sleep
 from datetime import datetime
 from datetime import timedelta
 
-TABLES = ("VIOLATION_ENF_ASSOC","LCR_SAMPLE","TREATMENT","LCR_SAMPLE_RESULT","SERVICE_AREA","GEOGRAPHIC_AREA","ENFORCEMENT_ACTION","VIOLATION","WATER_SYSTEM_FACILITY","WATER_SYSTEM")
+TABLES = ("VIOLATION_ENF_ASSOC","LCR_SAMPLE","TREATMENT","LCR_SAMPLE_RESULT","SERVICE_AREA","GEOGRAPHIC_AREA","ENFORCEMENT_ACTION","VIOLATION","WATER_SYSTEM_FACILITY","WATER_SYSTEM","ENFORCEMENT")
 MAX_ATTEMPTS=5
 table=''
 STATUS_TABLE=''
@@ -60,19 +60,19 @@ def let_user_pick(tables):
     if i == 4:
         table = "LCR_SAMPLE_RESULT"
         STATUS_TABLE=table + '_status'
-        primary_keys = {'1': 'PWSID', '2': 'SAMPLE_ID'}
+        primary_keys = {'1': 'SAR_ID'}
         fields = {'1': 'PWSID','2': 'SAMPLE_ID','3': 'EPA_REGION','4':'PRIMACY_AGENCY_CODE','5':'CONTAMINANT_CODE','6':'RESULT_SIGN_CODE','7':'SAMPLE_MEASURE','8':'SAR_ID','9':'UNIT_OF_MEASURE'}
 
     if i == 5:
         table = "SERVICE_AREA"
         STATUS_TABLE=table + '_status'
-        primary_keys = {'1': 'PWSID'} 
+        primary_keys = {'1': 'PWSID', '2': 'SERVICE_AREA_TYPE_CODE'} 
         fields = {'1': 'PWSID','2': 'EPA_REGION','3': 'IS_PRIMARY_SERVICE_AREA_CODE','4':'PRIMACY_AGENCY_CODE','5':'PWS_ACTIVITY_CODE','6':'PWS_TYPE_CODE', '7':'SERVICE_AREA_TYPE_CODE'}
 
     if i == 6:
         table = "GEOGRAPHIC_AREA"
         STATUS_TABLE=table + '_status'
-        primary_keys = {'1': 'PWSID','2': 'GEO_ID'} 
+        primary_keys = {'1': 'GEO_ID'} 
         fields = {'1': 'PWSID','2': 'GEO_ID','3': 'ANSI_ENTITY_CODE','4':'AREA_TYPE_CODE','5':'CITY_SERVED','6':'COUNTY_SERVED', '7':'EPA_REGION','8': 'PRIMACY_AGENCY_CODE','9': 'PWS_ACTIVITY_CODE','10': 'PWS_TYPE_CODE','11':'STATE_SERVED','12':'TRIBAL_CODE','13':'ZIP_CODE_SERVED'}
 
     if i == 7:
@@ -99,6 +99,13 @@ def let_user_pick(tables):
         primary_keys = {'1': 'PWSID'}
         fields = {'1': 'PWSID', '2': 'ADDRESS_LINE1', '3': 'ADDRESS_LINE2', '4': 'ADMIN_NAME', '5': 'ALT_PHONE_NUMBER', '6': 'CDS_ID', '7': 'CITY_NAME', '8': 'COUNTRY_CODE', '9': 'DBPR_SCHEDULE_CAT_CODE', '10': 'EMAIL_ADDR', '11': 'EPA_REGION', '12': 'FAX_NUMBER', '13': 'GW_SW_CODE', '14': 'IS_GRANT_ELIGIBLE_IND', '15': 'IS_SCHOOL_OR_DAYCARE_IND', '16': 'IS_WHOLESALER_IND', '17': 'LT2_SCHEDULE_CAT_CODE', '18': 'ORG_NAME', '19': 'OUTSTANDING_PERFORMER', '20': 'OUTSTANDING_PERFORM_BEGIN_DATE', '21': 'OWNER_TYPE_CODE', '22': 'PHONE_EXT_NUMBER', '23': 'PHONE_NUMBER', '24': 'POPULATION_SERVED_COUNT', '25': 'POP_CAT_11_CODE', '26': 'POP_CAT_2_CODE', '27': 'POP_CAT_3_CODE', '28': 'POP_CAT_4_CODE', '29': 'POP_CAT_5_CODE', '30': 'PRIMACY_AGENCY_CODE', '31': 'PRIMACY_TYPE', '32': 'PRIMARY_SOURCE_CODE', '33': 'PWS_ACTIVITY_CODE', '34': 'PWS_DEACTIVATION_DATE', '35': 'PWS_NAME', '36': 'PWS_TYPE_CODE', '37': 'SEASON_BEGIN_DATE', '38': 'SEASON_END_DATE', '39': 'SERVICE_CONNECTIONS_COUNT', '40': 'SOURCE_PROTECTION_BEGIN_DATE', '41': 'SOURCE_WATER_PROTECTION_CODE', '42': 'STATE_CODE', '43': 'SUBMISSION_STATUS_CODE', '44': 'ZIP_CODE','45': 'NPM_CANDIDATE', '46': 'CITIES_SERVED','47': 'COUNTIES_SERVED'}
 
+
+    if i == 11:
+        table = "ENFORCEMENT"
+        STATUS_TABLE=table+'_status'
+        primary_keys = {'1': 'VIODI', '2':'PWSID', '3': 'ENFID'}
+        fields = {'1': 'VIOID', '2': 'PWSID', '3': 'ENFID', '4': 'ENFACTIONITYPE', '5': 'ENFACTIONNAME', '6': 'ENFDATE'}
+
     return (STATUS_TABLE, table, primary_keys, fields)
 
 
@@ -122,8 +129,7 @@ def insert_into_db(query):
 
 
 def parse_json(json_data, url):
-    print(json_data.encode('utf-8', errors='replace'))
-    data = json.loads(str(json_data))
+    data = json.loads(str(json_data.encode('utf-8', errors='replace')))
 
     for record in data:
        if find_record(record) == 0:
@@ -222,7 +228,9 @@ def get_stats():
 
 def get_next():
         query_select = 'SELECT ' + FIELDS['1'] + ', ' + TABLE + ' FROM ' + STATUS_TABLE + ' WHERE ' + TABLE + '=0 order by ' + FIELDS['1'] + ' ASC limit 1 FOR UPDATE'
+        print(query_select)
         query_update = 'UPDATE ' + STATUS_TABLE + ' set ' + TABLE + '=' + str(100) + ' WHERE ' + FIELDS['1'] + '=%s limit 1'
+        print(query_update)
         res = mysql.get_next(query_select, query_update)
         return res
 
@@ -237,6 +245,7 @@ def update_status_in_db(pwsid, code):
 def get_contents(url):
         i = 0
         response = ''
+        print(url)
         while (i < MAX_ATTEMPTS):
           i = i + 1
           try:
