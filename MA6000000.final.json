@@ -1,0 +1,667 @@
+{
+    "AGGREGATES": [
+        {
+            "AGGREGATE": "STATE",
+            "CONTAMINANT": "PB90",
+            "DATE": "2016",
+            "LEVEL": 0.006418861660875727,
+            "UNITS": "mg/l"
+        },
+        {
+            "AGGREGATE": "STATE",
+            "CONTAMINANT": "PB90",
+            "DATE": "2010",
+            "LEVEL": 0.007512966924633481,
+            "UNITS": "mg/l"
+        },
+        {
+            "AGGREGATE": "STATE",
+            "CONTAMINANT": "PB90",
+            "DATE": "2007",
+            "LEVEL": 0.008955069330027866,
+            "UNITS": "mg/l"
+        },
+        {
+            "AGGREGATE": "STATE",
+            "CONTAMINANT": "PB90",
+            "DATE": "2014",
+            "LEVEL": 0.005891367254173483,
+            "UNITS": "mg/l"
+        },
+        {
+            "AGGREGATE": "STATE",
+            "CONTAMINANT": "PB90",
+            "DATE": "2011",
+            "LEVEL": 0.006316529447618598,
+            "UNITS": "mg/l"
+        },
+        {
+            "AGGREGATE": "STATE",
+            "CONTAMINANT": "PB90",
+            "DATE": "2008",
+            "LEVEL": 0.007719240995511255,
+            "UNITS": "mg/l"
+        },
+        {
+            "AGGREGATE": "STATE",
+            "CONTAMINANT": "PB90",
+            "DATE": "2009",
+            "LEVEL": 0.0074369922985034805,
+            "UNITS": "mg/l"
+        },
+        {
+            "AGGREGATE": "STATE",
+            "CONTAMINANT": "PB90",
+            "DATE": "2013",
+            "LEVEL": 0.006223388567629102,
+            "UNITS": "mg/l"
+        },
+        {
+            "AGGREGATE": "STATE",
+            "CONTAMINANT": "PB90",
+            "DATE": "2012",
+            "LEVEL": 0.006875005749747603,
+            "UNITS": "mg/l"
+        },
+        {
+            "AGGREGATE": "STATE",
+            "CONTAMINANT": "PB90",
+            "DATE": "2015",
+            "LEVEL": 0.005895269234927879,
+            "UNITS": "mg/l"
+        },
+        {
+            "AGGREGATE": "STATE",
+            "CONTAMINANT": "PB90",
+            "DATE": "2017",
+            "LEVEL": 0.006179529291317958,
+            "UNITS": "mg/l"
+        },
+        {
+            "AGGREGATE": "COUNTY",
+            "CONTAMINANT": "PB90",
+            "DATE": "2013",
+            "LEVEL": 0.007307518620743191,
+            "UNITS": "mg/l"
+        },
+        {
+            "AGGREGATE": "COUNTY",
+            "CONTAMINANT": "PB90",
+            "DATE": "2009",
+            "LEVEL": 0.008591822035568684,
+            "UNITS": "mg/l"
+        },
+        {
+            "AGGREGATE": "COUNTY",
+            "CONTAMINANT": "PB90",
+            "DATE": "2008",
+            "LEVEL": 0.008681488919508871,
+            "UNITS": "mg/l"
+        },
+        {
+            "AGGREGATE": "COUNTY",
+            "CONTAMINANT": "PB90",
+            "DATE": "2015",
+            "LEVEL": 0.0065474682134341045,
+            "UNITS": "mg/l"
+        },
+        {
+            "AGGREGATE": "COUNTY",
+            "CONTAMINANT": "PB90",
+            "DATE": "2011",
+            "LEVEL": 0.00685690195005276,
+            "UNITS": "mg/l"
+        },
+        {
+            "AGGREGATE": "COUNTY",
+            "CONTAMINANT": "PB90",
+            "DATE": "2014",
+            "LEVEL": 0.006399256333454311,
+            "UNITS": "mg/l"
+        },
+        {
+            "AGGREGATE": "COUNTY",
+            "CONTAMINANT": "PB90",
+            "DATE": "2012",
+            "LEVEL": 0.008356624006493148,
+            "UNITS": "mg/l"
+        },
+        {
+            "AGGREGATE": "COUNTY",
+            "CONTAMINANT": "PB90",
+            "DATE": "2016",
+            "LEVEL": 0.007311878340274779,
+            "UNITS": "mg/l"
+        },
+        {
+            "AGGREGATE": "COUNTY",
+            "CONTAMINANT": "PB90",
+            "DATE": "2007",
+            "LEVEL": 0.009463741127800917,
+            "UNITS": "mg/l"
+        },
+        {
+            "AGGREGATE": "COUNTY",
+            "CONTAMINANT": "PB90",
+            "DATE": "2010",
+            "LEVEL": 0.0080991255953949,
+            "UNITS": "mg/l"
+        }
+    ],
+    "CITY_NAME": "BOSTON",
+    "CITY_NAMES": [
+        "BOSTON",
+        "CHICOPEE",
+        "SOUTH HADLEY",
+        "LEOMINSTER",
+        "MARLBOROUGH",
+        "SOUTHBOROUGH",
+        "WORCESTER",
+        "ARLINGTON",
+        "BELMONT",
+        "BOSTON",
+        "BROOKLINE",
+        "CAMBRIDGE",
+        "CHELSEA",
+        "DEDHAM",
+        "EVERETT",
+        "FRAMINGHAM",
+        "LEXINGTON",
+        "LYNN",
+        "MALDEN",
+        "MARBLEHEAD",
+        "MELROSE",
+        "MILTON",
+        "NEEDHAM",
+        "NEWTON",
+        "PEABODY",
+        "QUINCY",
+        "READING",
+        "REVERE",
+        "SAUGUS",
+        "SOMERVILLE",
+        "STONEHAM",
+        "SWAMPSCOTT",
+        "WAKEFIELD",
+        "WATERTOWN",
+        "WELLESLEY",
+        "WESTON",
+        "BRAINTREE"
+    ],
+    "CONTAMINANTS": [
+        {
+            "CONTAMINANT": "PB90",
+            "DATE": "2009-12-31",
+            "LEVEL": 0.0106,
+            "SDWIS_URI": "https://iaspub.epa.gov/enviro/efservice/LCR_SAMPLE/PWSID/MA6000000/SAMPLE_ID/7669/",
+            "SIGN": null,
+            "UNITS": "mg/L"
+        },
+        {
+            "CONTAMINANT": "PB90",
+            "DATE": "2010-06-30",
+            "LEVEL": 0.00705,
+            "SDWIS_URI": "https://iaspub.epa.gov/enviro/efservice/LCR_SAMPLE/PWSID/MA6000000/SAMPLE_ID/7670/",
+            "SIGN": null,
+            "UNITS": "mg/L"
+        },
+        {
+            "CONTAMINANT": "PB90",
+            "DATE": "2008-12-31",
+            "LEVEL": 0.0083,
+            "SDWIS_URI": "https://iaspub.epa.gov/enviro/efservice/LCR_SAMPLE/PWSID/MA6000000/SAMPLE_ID/5781/",
+            "SIGN": null,
+            "UNITS": "mg/L"
+        },
+        {
+            "CONTAMINANT": "PB90",
+            "DATE": "2016-12-31",
+            "LEVEL": 0.0069,
+            "SDWIS_URI": "https://iaspub.epa.gov/enviro/efservice/LCR_SAMPLE/PWSID/MA6000000/SAMPLE_ID/10114/",
+            "SIGN": null,
+            "UNITS": "mg/L"
+        },
+        {
+            "CONTAMINANT": "PB90",
+            "DATE": "2007-06-30",
+            "LEVEL": 0.00954,
+            "SDWIS_URI": "https://iaspub.epa.gov/enviro/efservice/LCR_SAMPLE/PWSID/MA6000000/SAMPLE_ID/5105/",
+            "SIGN": null,
+            "UNITS": "mg/L"
+        },
+        {
+            "CONTAMINANT": "PB90",
+            "DATE": "2009-06-30",
+            "LEVEL": 0.007,
+            "SDWIS_URI": "https://iaspub.epa.gov/enviro/efservice/LCR_SAMPLE/PWSID/MA6000000/SAMPLE_ID/5845/",
+            "SIGN": null,
+            "UNITS": "mg/L"
+        },
+        {
+            "CONTAMINANT": "PB90",
+            "DATE": "2011-06-30",
+            "LEVEL": 0.00446,
+            "SDWIS_URI": "https://iaspub.epa.gov/enviro/efservice/LCR_SAMPLE/PWSID/MA6000000/SAMPLE_ID/7672/",
+            "SIGN": null,
+            "UNITS": "mg/L"
+        },
+        {
+            "CONTAMINANT": "PB90",
+            "DATE": "2011-12-31",
+            "LEVEL": 0.00699,
+            "SDWIS_URI": "https://iaspub.epa.gov/enviro/efservice/LCR_SAMPLE/PWSID/MA6000000/SAMPLE_ID/7673/",
+            "SIGN": null,
+            "UNITS": "mg/L"
+        },
+        {
+            "CONTAMINANT": "PB90",
+            "DATE": "2010-12-31",
+            "LEVEL": 0.00703,
+            "SDWIS_URI": "https://iaspub.epa.gov/enviro/efservice/LCR_SAMPLE/PWSID/MA6000000/SAMPLE_ID/7671/",
+            "SIGN": null,
+            "UNITS": "mg/L"
+        },
+        {
+            "CONTAMINANT": "PB90",
+            "DATE": "2013-12-31",
+            "LEVEL": 0.00626,
+            "SDWIS_URI": "https://iaspub.epa.gov/enviro/efservice/LCR_SAMPLE/PWSID/MA6000000/SAMPLE_ID/8522/",
+            "SIGN": null,
+            "UNITS": "mg/L"
+        },
+        {
+            "CONTAMINANT": "PB90",
+            "DATE": "2015-12-31",
+            "LEVEL": 0.0062,
+            "SDWIS_URI": "https://iaspub.epa.gov/enviro/efservice/LCR_SAMPLE/PWSID/MA6000000/SAMPLE_ID/9406/",
+            "SIGN": null,
+            "UNITS": "mg/L"
+        },
+        {
+            "CONTAMINANT": "PB90",
+            "DATE": "2014-12-31",
+            "LEVEL": 0.00538,
+            "SDWIS_URI": "https://iaspub.epa.gov/enviro/efservice/LCR_SAMPLE/PWSID/MA6000000/SAMPLE_ID/9407/",
+            "SIGN": null,
+            "UNITS": "mg/L"
+        },
+        {
+            "CONTAMINANT": "PB90",
+            "DATE": "2008-06-30",
+            "LEVEL": 0.0072,
+            "SDWIS_URI": "https://iaspub.epa.gov/enviro/efservice/LCR_SAMPLE/PWSID/MA6000000/SAMPLE_ID/5641/",
+            "SIGN": null,
+            "UNITS": "mg/L"
+        },
+        {
+            "CONTAMINANT": "PB90",
+            "DATE": "2012-12-31",
+            "LEVEL": 0.00771,
+            "SDWIS_URI": "https://iaspub.epa.gov/enviro/efservice/LCR_SAMPLE/PWSID/MA6000000/SAMPLE_ID/8521/",
+            "SIGN": null,
+            "UNITS": "mg/L"
+        },
+        {
+            "CONTAMINANT": "PB90",
+            "DATE": "2007-12-31",
+            "LEVEL": 0.0083,
+            "SDWIS_URI": "https://iaspub.epa.gov/enviro/efservice/LCR_SAMPLE/PWSID/MA6000000/SAMPLE_ID/5107/",
+            "SIGN": null,
+            "UNITS": "mg/L"
+        }
+    ],
+    "COUNTY_NAME": "SUFFOLK",
+    "COUNTY_NAMES": [
+        "SUFFOLK"
+    ],
+    "IS_SCHOOL": "N",
+    "ORG_ADDRESS_LINE1": "100 FIRST AVENUE",
+    "ORG_ADDRESS_LINE2": "CHARLESTOWN NAVY YARD",
+    "ORG_CCR_REPORT_URI": null,
+    "ORG_NAME": "MWRA  CHARLESTOWN NAVY YARD",
+    "ORG_PHONE_NUMBER": "6177884303",
+    "ORG_URI": null,
+    "OUTSTANDING_PERFORMER": null,
+    "POPULATION_SERVED": 2550000,
+    "PWSID": "MA6000000",
+    "PWS_NAME": "MWRA",
+    "SDWIS_PULLDATE": "2017-08-11",
+    "SDWIS_URI": "https://iaspub.epa.gov/enviro/efservice/WATER_SYSTEM/PWSID/MA6000000",
+    "SOURCE_PURCHASED_PWSID": null,
+    "SOURCE_RESERVOIR_INFO": [
+        {
+            "FACILITY_ID": "6000000-02S",
+            "FACILITY_NAME": "QUABBIN RESERVOIR",
+            "SDWIS_URI": "https://iaspub.epa.gov/enviro/efservice/WATER_SYSTEM_FACILITY/PWSID/MA6000000/STATE_FACILITY_ID/6000000-02S/"
+        },
+        {
+            "FACILITY_ID": "6000000-06S",
+            "FACILITY_NAME": "WARE RIVER INTAKE",
+            "SDWIS_URI": "https://iaspub.epa.gov/enviro/efservice/WATER_SYSTEM_FACILITY/PWSID/MA6000000/STATE_FACILITY_ID/6000000-06S/"
+        },
+        {
+            "FACILITY_ID": "6000000-04S",
+            "FACILITY_NAME": "RESERVOIR NO. 3 (FRAMINGHAM)",
+            "SDWIS_URI": "https://iaspub.epa.gov/enviro/efservice/WATER_SYSTEM_FACILITY/PWSID/MA6000000/STATE_FACILITY_ID/6000000-04S/"
+        },
+        {
+            "FACILITY_ID": "6000000-05S",
+            "FACILITY_NAME": "SPOT POND",
+            "SDWIS_URI": "https://iaspub.epa.gov/enviro/efservice/WATER_SYSTEM_FACILITY/PWSID/MA6000000/STATE_FACILITY_ID/6000000-05S/"
+        },
+        {
+            "FACILITY_ID": "6000000-03S",
+            "FACILITY_NAME": "SUDBURY RESERVOIR",
+            "SDWIS_URI": "https://iaspub.epa.gov/enviro/efservice/WATER_SYSTEM_FACILITY/PWSID/MA6000000/STATE_FACILITY_ID/6000000-03S/"
+        },
+        {
+            "FACILITY_ID": "6000000-01S",
+            "FACILITY_NAME": "WACHUSETT RESERVOIR",
+            "SDWIS_URI": "https://iaspub.epa.gov/enviro/efservice/WATER_SYSTEM_FACILITY/PWSID/MA6000000/STATE_FACILITY_ID/6000000-01S/"
+        }
+    ],
+    "SOURCE_TREATMENTPLANT_INFO": [
+        {
+            "FACILITY_ID": "6000000-10T",
+            "FACILITY_NAME": "CARROLL WATER TREATMENT PLANT",
+            "SDWIS_URI": "https://iaspub.epa.gov/enviro/efservice/WATER_SYSTEM_FACILITY/PWSID/MA6000000/STATE_FACILITY_ID/6000000-10T/"
+        },
+        {
+            "FACILITY_ID": "6000000-06T",
+            "FACILITY_NAME": "FELLS RESERVOIR TREATMENT FACILITY",
+            "SDWIS_URI": "https://iaspub.epa.gov/enviro/efservice/WATER_SYSTEM_FACILITY/PWSID/MA6000000/STATE_FACILITY_ID/6000000-06T/"
+        },
+        {
+            "FACILITY_ID": "6000000-02T",
+            "FACILITY_NAME": "LELAND STREET STATION",
+            "SDWIS_URI": "https://iaspub.epa.gov/enviro/efservice/WATER_SYSTEM_FACILITY/PWSID/MA6000000/STATE_FACILITY_ID/6000000-02T/"
+        },
+        {
+            "FACILITY_ID": "6000000-03T",
+            "FACILITY_NAME": "NORUMBEGA RESERVOIR TREATMENT FACILITY",
+            "SDWIS_URI": "https://iaspub.epa.gov/enviro/efservice/WATER_SYSTEM_FACILITY/PWSID/MA6000000/STATE_FACILITY_ID/6000000-03T/"
+        },
+        {
+            "FACILITY_ID": "6000000-04T",
+            "FACILITY_NAME": "WESTON RESERVOIR TREATMENT FACILITY",
+            "SDWIS_URI": "https://iaspub.epa.gov/enviro/efservice/WATER_SYSTEM_FACILITY/PWSID/MA6000000/STATE_FACILITY_ID/6000000-04T/"
+        },
+        {
+            "FACILITY_ID": "6000000-08T",
+            "FACILITY_NAME": "BRUTSCH WATER TREATMENT FACILITY",
+            "SDWIS_URI": "https://iaspub.epa.gov/enviro/efservice/WATER_SYSTEM_FACILITY/PWSID/MA6000000/STATE_FACILITY_ID/6000000-08T/"
+        },
+        {
+            "FACILITY_ID": "6000000-07T",
+            "FACILITY_NAME": "SHAFT 9A TREATMENT FACILITY",
+            "SDWIS_URI": "https://iaspub.epa.gov/enviro/efservice/WATER_SYSTEM_FACILITY/PWSID/MA6000000/STATE_FACILITY_ID/6000000-07T/"
+        },
+        {
+            "FACILITY_ID": "6000000-01T",
+            "FACILITY_NAME": "SOUTHBORO FACILITIES",
+            "SDWIS_URI": "https://iaspub.epa.gov/enviro/efservice/WATER_SYSTEM_FACILITY/PWSID/MA6000000/STATE_FACILITY_ID/6000000-01T/"
+        },
+        {
+            "FACILITY_ID": "6000000-05T",
+            "FACILITY_NAME": "JAMES GILLIS PUMP STATION",
+            "SDWIS_URI": "https://iaspub.epa.gov/enviro/efservice/WATER_SYSTEM_FACILITY/PWSID/MA6000000/STATE_FACILITY_ID/6000000-05T/"
+        },
+        {
+            "FACILITY_ID": "6000000-09T",
+            "FACILITY_NAME": "WACHUSETT RESERVOIR",
+            "SDWIS_URI": "https://iaspub.epa.gov/enviro/efservice/WATER_SYSTEM_FACILITY/PWSID/MA6000000/STATE_FACILITY_ID/6000000-09T/"
+        }
+    ],
+    "STATE_CODE": "MA",
+    "TREATMENTS": [
+        {
+            "COMMENTS": null,
+            "FACILITY_ID": "6000000-07T",
+            "OBJECTIVE": "D",
+            "OBJECTIVE_EXPLAIN": "DISINFECTION",
+            "SDWIS_URI": "https://iaspub.epa.gov/enviro/efservice/TREATMENT/PWSID/MA6000000/",
+            "TREATMENT": "401",
+            "TREATMENT_EXPLAIN": "GASEOUS CHLORINATION, POST"
+        },
+        {
+            "COMMENTS": null,
+            "FACILITY_ID": "6000000-03T",
+            "OBJECTIVE": "D",
+            "OBJECTIVE_EXPLAIN": "DISINFECTION",
+            "SDWIS_URI": "https://iaspub.epa.gov/enviro/efservice/TREATMENT/PWSID/MA6000000/",
+            "TREATMENT": "200",
+            "TREATMENT_EXPLAIN": "CHLORAMINES"
+        },
+        {
+            "COMMENTS": null,
+            "FACILITY_ID": "6000000-02T",
+            "OBJECTIVE": "D",
+            "OBJECTIVE_EXPLAIN": "DISINFECTION",
+            "SDWIS_URI": "https://iaspub.epa.gov/enviro/efservice/TREATMENT/PWSID/MA6000000/",
+            "TREATMENT": "403",
+            "TREATMENT_EXPLAIN": "GASEOUS CHLORINATION, PRE"
+        },
+        {
+            "COMMENTS": null,
+            "FACILITY_ID": "6000000-01T",
+            "OBJECTIVE": "C",
+            "OBJECTIVE_EXPLAIN": "CORROSION CONTROL",
+            "SDWIS_URI": "https://iaspub.epa.gov/enviro/efservice/TREATMENT/PWSID/MA6000000/",
+            "TREATMENT": "740",
+            "TREATMENT_EXPLAIN": "PH ADJUSTMENT"
+        },
+        {
+            "COMMENTS": null,
+            "FACILITY_ID": "6000000-01T",
+            "OBJECTIVE": "Z",
+            "OBJECTIVE_EXPLAIN": "OTHER",
+            "SDWIS_URI": "https://iaspub.epa.gov/enviro/efservice/TREATMENT/PWSID/MA6000000/",
+            "TREATMENT": "380",
+            "TREATMENT_EXPLAIN": "FLUORIDATION"
+        },
+        {
+            "COMMENTS": null,
+            "FACILITY_ID": "6000000-04T",
+            "OBJECTIVE": "D",
+            "OBJECTIVE_EXPLAIN": "DISINFECTION",
+            "SDWIS_URI": "https://iaspub.epa.gov/enviro/efservice/TREATMENT/PWSID/MA6000000/",
+            "TREATMENT": "200",
+            "TREATMENT_EXPLAIN": "CHLORAMINES"
+        },
+        {
+            "COMMENTS": "ADJUSTS ALKALINITY AS WELL AS PH",
+            "FACILITY_ID": "6000000-10T",
+            "OBJECTIVE": "C",
+            "OBJECTIVE_EXPLAIN": "CORROSION CONTROL",
+            "SDWIS_URI": "https://iaspub.epa.gov/enviro/efservice/TREATMENT/PWSID/MA6000000/",
+            "TREATMENT": "740",
+            "TREATMENT_EXPLAIN": "PH ADJUSTMENT"
+        },
+        {
+            "COMMENTS": null,
+            "FACILITY_ID": "6000000-10T",
+            "OBJECTIVE": "Z",
+            "OBJECTIVE_EXPLAIN": "OTHER",
+            "SDWIS_URI": "https://iaspub.epa.gov/enviro/efservice/TREATMENT/PWSID/MA6000000/",
+            "TREATMENT": "380",
+            "TREATMENT_EXPLAIN": "FLUORIDATION"
+        },
+        {
+            "COMMENTS": null,
+            "FACILITY_ID": "6000000-06T",
+            "OBJECTIVE": "D",
+            "OBJECTIVE_EXPLAIN": "DISINFECTION",
+            "SDWIS_URI": "https://iaspub.epa.gov/enviro/efservice/TREATMENT/PWSID/MA6000000/",
+            "TREATMENT": "421",
+            "TREATMENT_EXPLAIN": "HYPOCHLORINATION, POST"
+        },
+        {
+            "COMMENTS": null,
+            "FACILITY_ID": "6000000-08T",
+            "OBJECTIVE": "D",
+            "OBJECTIVE_EXPLAIN": "DISINFECTION",
+            "SDWIS_URI": "https://iaspub.epa.gov/enviro/efservice/TREATMENT/PWSID/MA6000000/",
+            "TREATMENT": "423",
+            "TREATMENT_EXPLAIN": "HYPOCHLORINATION, PRE"
+        },
+        {
+            "COMMENTS": null,
+            "FACILITY_ID": "6000000-09T",
+            "OBJECTIVE": "D",
+            "OBJECTIVE_EXPLAIN": "DISINFECTION",
+            "SDWIS_URI": "https://iaspub.epa.gov/enviro/efservice/TREATMENT/PWSID/MA6000000/",
+            "TREATMENT": "401",
+            "TREATMENT_EXPLAIN": "GASEOUS CHLORINATION, POST"
+        },
+        {
+            "COMMENTS": null,
+            "FACILITY_ID": "6000000-05T",
+            "OBJECTIVE": "D",
+            "OBJECTIVE_EXPLAIN": "DISINFECTION",
+            "SDWIS_URI": "https://iaspub.epa.gov/enviro/efservice/TREATMENT/PWSID/MA6000000/",
+            "TREATMENT": "421",
+            "TREATMENT_EXPLAIN": "HYPOCHLORINATION, POST"
+        },
+        {
+            "COMMENTS": null,
+            "FACILITY_ID": "6000000-10T",
+            "OBJECTIVE": "D",
+            "OBJECTIVE_EXPLAIN": "DISINFECTION",
+            "SDWIS_URI": "https://iaspub.epa.gov/enviro/efservice/TREATMENT/PWSID/MA6000000/",
+            "TREATMENT": "200",
+            "TREATMENT_EXPLAIN": "CHLORAMINES"
+        },
+        {
+            "COMMENTS": "BISULFITE IS USED TO REDUCE OZONE",
+            "FACILITY_ID": "6000000-10T",
+            "OBJECTIVE": "D",
+            "OBJECTIVE_EXPLAIN": "DISINFECTION",
+            "SDWIS_URI": "https://iaspub.epa.gov/enviro/efservice/TREATMENT/PWSID/MA6000000/",
+            "TREATMENT": "543",
+            "TREATMENT_EXPLAIN": "OZONATION, PRE"
+        }
+    ],
+    "VIOLATIONS": [],
+    "WATER_SOURCE_TYPE": "SW",
+    "ZIP_CODE": "02129",
+    "ZIP_CODES": [
+        "02129",
+        "02108",
+        "02109",
+        "02110",
+        "02111",
+        "02112",
+        "02113",
+        "02114",
+        "02115",
+        "02116",
+        "02117",
+        "02118",
+        "02123",
+        "02133",
+        "02163",
+        "02196",
+        "02199",
+        "02201",
+        "02203",
+        "02204",
+        "02205",
+        "02206",
+        "02210",
+        "02211",
+        "02212",
+        "02215",
+        "02217",
+        "02222",
+        "02241",
+        "02266",
+        "02283",
+        "02284",
+        "02293",
+        "02297",
+        "02298",
+        "01020",
+        "01075",
+        "01453",
+        "01752",
+        "01772",
+        "01604",
+        "02476",
+        "02478",
+        "02119",
+        "02445",
+        "02138",
+        "02150",
+        "02027",
+        "02149",
+        "01702",
+        "02420",
+        "01905",
+        "02148",
+        "01945",
+        "02176",
+        "02186",
+        "02492",
+        "02459",
+        "01960",
+        "02169",
+        "01867",
+        "02151",
+        "01906",
+        "02145",
+        "02180",
+        "01907",
+        "01880",
+        "02472",
+        "02481",
+        "02493",
+        "02184",
+        "01013",
+        "01014",
+        "01021",
+        "01022",
+        "01601",
+        "01602",
+        "01603",
+        "01605",
+        "01606",
+        "01607",
+        "01608",
+        "01609",
+        "01610",
+        "01613",
+        "01614",
+        "01615",
+        "01653",
+        "01655",
+        "02474",
+        "02446",
+        "02139",
+        "02140",
+        "02141",
+        "02142",
+        "02238",
+        "02026",
+        "01701",
+        "01703",
+        "01704",
+        "01705",
+        "02421",
+        "01901",
+        "01902",
+        "01903",
+        "01904",
+        "01910",
+        "02458",
+        "01961",
+        "02170",
+        "02171",
+        "02269",
+        "02143",
+        "02144",
+        "02471",
+        "02477",
+        "02482",
+        "02185"
+    ]
+}
