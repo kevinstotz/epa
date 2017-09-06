@@ -161,9 +161,9 @@ def insert_record(data, url):
 
 def find_record(data):
      if len(PRIMARY_KEYS) == 1:
-         query = 'SELECT count(*) FROM ' + TABLE + ' WHERE ' + PRIMARY_KEYS['1'] + '="' + str(data[PRIMARY_KEYS['1']]) + '"'
+         query = 'SELECT count(PWSID) FROM ' + TABLE + ' WHERE ' + PRIMARY_KEYS['1'] + '="' + str(data[PRIMARY_KEYS['1']]) + '"'
      else:
-         query = 'SELECT count(*) FROM ' + TABLE + ' WHERE '
+         query = 'SELECT count(PWSID) FROM ' + TABLE + ' WHERE '
          i = 1
          for key, value in PRIMARY_KEYS.items():
              if i < len(PRIMARY_KEYS):
