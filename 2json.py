@@ -1,17 +1,20 @@
 #!/usr/bin/python
+import argparse
+import glob
+from elasticsearch import Elasticsearch
 import codecs
 import re
 import sys
 import json
 import requests
-
+import subprocess
+import os
 from mysql2Json import MysqlPython
 from time import sleep
 from datetime import datetime
 from datetime import timedelta
 
 
-TABLES = ("VIOLATION_ENF_ASSOC","LCR_SAMPLE","TREATMENT","LCR_SAMPLE_RESULT","SERVICE_AREA","GEOGRAPHIC_AREA","ENFORCEMENT_ACTION","VIOLATION","WATER_SYSTEM_FACILITY","WATER_SYSTEM","ENFORCEMENT")
 MAX_ATTEMPTS=5
 table=''
 STATUS_TABLE=''
@@ -24,6 +27,31 @@ mysql = MysqlPython()
 pwsid = -1
 
 
+def es(data):
+        args = {}
+        args = {'fid':'','type': 'ws', 'id': '', 'indexname': 'kyw2'}
+        args['fid'] = None
+        args['type'] = 'ws'
+        args['id'] = data.name
+        args['indexname'] = 'kyw2'
+
+        es = Elasticsearch('http://ec2-34-226-105-246.compute-1.amazonaws.com:9200/')
+        jData = {}
+        try:
+            with open(data.name,'r') as json_file:
+                jData = json.load(json_file)
+        except Exception, e:
+            print "index.py: error reading:", e
+
+        # add the filename
+        jData['filename'] = data.name
+        print "index.py: indexing:", data.name,
+
+        try:
+            print(args)
+            res = es.index(index=args['indexname'], doc_type=args['type'],  id=args['id'], body=jData)
+        except Exception, e:
+            print(e)
 
 def get_water_system(pwsid, TABLE):
      query = 'SELECT * FROM ' + TABLE  + ' WHERE PWSID="' + str(pwsid) + '"'
@@ -36,8 +64,13 @@ def get_water_system(pwsid, TABLE):
         return res
 
 
-def get_aggregates(pwsid,AGGREGATES):
-     query = "SELECT AGGREGATE, CONTAMINANT, DATE, UNITS, LEVEL FROM AGGREGATES WHERE PWSID='" + str(pwsid) + "'"
+def get_aggregates(pwsid, TABLE):
+     if pwsid.isdigit():
+        pwsid = str(pwsid[:1]);
+        query = 'SELECT * FROM ' + TABLE  + ' WHERE STATE LIKE "' + str(pwsid) + '%"'
+     else:
+        pwsid = str(pwsid[:2]);
+        query = 'SELECT * FROM ' + TABLE  + ' WHERE STATE="' + str(pwsid) + '"'
      print(query)
      res = mysql.custom_query(query)
      if len(res) > 0:
@@ -47,10 +80,11 @@ def get_aggregates(pwsid,AGGREGATES):
         return res
 
 
+
 def get_city_names(pwsid, TABLE):
-     query = 'SELECT CITY_SERVED FROM ' + TABLE  + ' WHERE PWSID="' + str(pwsid) + '"'
+     query = 'call get_city_names("' + str(pwsid) + '")'
      print(query)
-     res = mysql.custom_query(query)
+     res = mysql.custom_procedure(query)
      if len(res) > 0:
         return res
      else:
@@ -113,8 +147,19 @@ def get_violations(pwsid, TABLE):
         return res
 
 
+def get_enforcements(pwsid, violation_id, enforcement_id, TABLE):
+     query = 'SELECT ENFORCEMENT_ACTION_TYPE_CODE, ENFORCEMENT_ACTION_TYPE_CODE_EXPLAIN, DATE_FORMAT(ENFORCEMENT_DATE, \'%Y-%m-%d)\'), ORIGINATOR_CODE, ENFORCEMENT_ID, SDWIS_URI, ENFORCEMENT_COMMENT_TEXT FROM ' + TABLE  + ' WHERE PWSID="' + str(pwsid) + '" AND VIOLATION_ID="'+violation_id+'" AND ENFORCEMENT_ID="'+enforcement_id+'"'
+     print(query)
+     res = mysql.custom_query(query)
+     if len(res) > 0:
+        return res
+     else:
+        print("Record {}:Not Found: query={}".format(res, query))
+        return res
+
+
 def get_treatments(pwsid, TABLE):
-     query = 'SELECT COMMENTS, FACILITY_ID, OBJECTIVE, OBJECTIVE_EXPLAINE,TREATMENT,TREATMENT_EXPLAIN FROM ' + TABLE  + ' WHERE PWSID="' + str(pwsid) + '"'
+     query = 'SELECT COMMENTS, FACILITY_ID, OBJECTIVE, TREATMENT,TREATMENT_EXPLAIN FROM ' + TABLE  + ' WHERE PWSID="' + str(pwsid) + '"'
      print(query)
      res = mysql.custom_query(query)
      if len(res) > 0:
@@ -136,19 +181,17 @@ def get_zip_codes(pwsid, TABLE):
 
 
 def get_next(id):
-        query_select = 'SELECT PWSID  FROM kyw0817.GAP WHERE id='+str(id)
+        query_select = 'SELECT PWSID FROM WATER_SYSTEMS WHERE id='+str(id)
         print(query_select)
         res = mysql.get_next(query_select)
         return res
 
 
-AGGREGATES = ('AGGREGATE', 'CONTAMINANT', 'DATE', 'UNITS', 'LEVEL')
-id = 4995
 id = 1
-TABLES = ('AGGREGATES','TREATMENTS','ZIP_CODES','CITY_NAMES','CONTAMINANTS','SOURCE_TREATMENTPLANT_INFO','SOURCE_RESERVOIR_INFO','COUNTY_NAMES')
 
 while (pwsid != 0):
         pwsid = get_next(id)
+        #pwsid[0]['PWSID'] = 'MA6000000'
         outfile = open('json/'+pwsid[0]['PWSID'] + ".json", "w")
         print('id={}: PWSID={}'.format(id, pwsid))
 
@@ -159,7 +202,7 @@ while (pwsid != 0):
             continue
         outfile.write('{')
 
-        aggregates = get_aggregates(pwsid[0]['PWSID'], AGGREGATES)
+        aggregates = get_aggregates(pwsid[0]['PWSID'], 'AGGREGATES')
         outfile.write('"AGGREGATES": ')
         json.dump(aggregates,outfile)
         outfile.write(',')
@@ -172,6 +215,7 @@ while (pwsid != 0):
         city_names = get_city_names(pwsid[0]['PWSID'], 'CITY_NAMES')
         outfile.write('[')
         idx = 0
+        
         for city in city_names:
            json.dump(city['CITY_SERVED'],outfile)
            idx = idx + 1
@@ -190,8 +234,14 @@ while (pwsid != 0):
 
         outfile.write('"COUNTY_NAMES": ')
         county_names = get_county_names(pwsid[0]['PWSID'], 'COUNTY_NAMES')
-        json.dump(county_names,outfile) 
-        outfile.write(',')
+        outfile.write('[')
+        idx=0
+        for county in county_names:
+           json.dump(county['COUNTY_SERVED'],outfile)
+           idx = idx + 1
+           if idx < len(county_names):
+               outfile.write(',')
+        outfile.write('],')
 
         outfile.write('"IS_SCHOOL": ')
         json.dump(water_system[0]['IS_SCHOOL'],outfile)
@@ -276,6 +326,8 @@ while (pwsid != 0):
 
         outfile.write('"VIOLATIONS": ')
         violations = get_violations(pwsid[0]['PWSID'], 'VIOLATIONS')
+        for idx,violation in enumerate(violations):
+            violations[idx]['ENFORCEMENTS'] = get_enforcements(violation['PWSID'],violation['VIOLATION_ID'],violation['RTC_ENFORCEMENT_ID'],'ENFORCEMENTS')
         json.dump(violations,outfile)
         outfile.write(',')
 
@@ -299,5 +351,7 @@ while (pwsid != 0):
         outfile.write(']')
 
         outfile.write('}')
+        outfile.close()
+        es(outfile)
         id = id + 1
 exit()

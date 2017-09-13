@@ -69,4 +69,16 @@ class MysqlPython(object):
         self.__close()
         return result
 
+    def custom_procedure(self, sql):
+        result = []
+        self.__open()
+        self.__session.execute(sql)
+        #self.__connection.commit()
+        number_rows = self.__session.rowcount
+        if number_rows > 0:
+              result = self.__session.fetchall()
+        self.__close()
+        return result
+
+
 ## End class

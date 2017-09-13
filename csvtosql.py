@@ -12,10 +12,7 @@ from datetime import timedelta
 
 def insert_into_db(query):
      res = mysql.custom_insert(query)
-     if res > 0:
-        print("Inserted row id:{}:query={}".format(res,query))
-     else:
-        print("Failed inserting {}:query={}".format(res,query))
+     return res
 
 def insert_record(data, url):
      query = ''
@@ -32,9 +29,13 @@ def insert_record(data, url):
             #d = d.decode('unicode_escape').encode('ascii','ignore')
          query = query + value + '="' + str(d) + '", '
      query = 'INSERT INTO ' + TABLE + ' SET ' + query + ' url="' + str(url) + '"'
-     print(query)
-     insert_into_db(query)
+     res = insert_into_db(query)
+     print(res)
 
+
+def find_record(query):
+     return mysql.custom_query(query)
+    
 
 def update_record(data, url):
 
@@ -79,13 +80,25 @@ def get_next():
         res = mysql.get_next(query_select, query_update)
         return res
 
+mysql = MysqlPython()
+csv_file = 'cities.csv'
 
-id=1
-css_file = 'cities.csv'
-
-with open(csv_file, newline='\n') as csvfile:
-     cityreader = csv.reader(csvfile, delimiter=',', quotechar='"')
-     for row in cityreader:
-         print((row))
-         exit()
+with open(csv_file) as csvfile:
+     cityreader = csv.reader(csvfile, delimiter=',')
+     for id2,row in enumerate(cityreader):
+         for idx,item in enumerate(row):
+             sql = 'INSERT IGNORE INTO CITY_NAMES SET '
+             if not item:
+                 break
+             if idx == 0:
+                PWSID = item
+                continue
+             q = 'select PWSID FROM CITY_NAMES WHERE PWSID="' + PWSID.strip() + '" AND CITY_SERVED="' + item.strip()+ '"' 
+             r = find_record(q)
+             if  r:
+                continue
+             sql = sql + 'PWSID="' + PWSID.strip() + '", CITY_SERVED="'+item.strip()+'";'
+             print(sql)
+             res = insert_into_db(sql)
+             print("RES=",res)
 exit()
