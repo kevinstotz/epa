@@ -1,4 +1,5 @@
 #!/usr/bin/python
+from multiprocessing import Lock, Process, Queue, current_process
 import argparse
 import glob
 from elasticsearch import Elasticsearch
@@ -12,6 +13,7 @@ import os
 from mysql2Json import MysqlPython
 from time import sleep
 from datetime import datetime
+from datetime import date
 from datetime import timedelta
 
 
@@ -65,12 +67,8 @@ def get_water_system(pwsid, TABLE):
 
 
 def get_aggregates(pwsid, TABLE):
-     if pwsid.isdigit():
-        pwsid = str(pwsid[:1]);
-        query = 'SELECT * FROM ' + TABLE  + ' WHERE STATE LIKE "' + str(pwsid) + '%"'
-     else:
-        pwsid = str(pwsid[:2]);
-        query = 'SELECT * FROM ' + TABLE  + ' WHERE STATE="' + str(pwsid) + '"'
+     #pwsid = str(pwsid[:2]);
+     query = 'SELECT NAME, LEVEL, CONTAMINANT, DATE, STATE, AGGREGATE, UNITS FROM ' + TABLE  + ' WHERE STATE="' + str(pwsid) + '"'
      print(query)
      res = mysql.custom_query(query)
      if len(res) > 0:
@@ -104,7 +102,7 @@ def get_county_names(pwsid, TABLE):
 
 
 def get_contaminants(pwsid, TABLE):
-     query = 'SELECT CONTAMINANT, DATE, LEVEL, SIGN, UNITS FROM ' + TABLE  + ' WHERE PWSID="' + str(pwsid) + '"'
+     query = 'SELECT LEVEL, CONTAMINANT, SIGN, SDWIS_URI, UNITS, DATE FROM ' + TABLE  + ' WHERE PWSID="' + str(pwsid) + '"'
      print(query)
      res = mysql.custom_query(query)
      if len(res) > 0:
@@ -159,7 +157,7 @@ def get_enforcements(pwsid, violation_id, enforcement_id, TABLE):
 
 
 def get_treatments(pwsid, TABLE):
-     query = 'SELECT COMMENTS, FACILITY_ID, OBJECTIVE, TREATMENT,TREATMENT_EXPLAIN FROM ' + TABLE  + ' WHERE PWSID="' + str(pwsid) + '"'
+     query = 'SELECT COMMENTS, OBJECTIVE_EXPLAIN, FACILITY_ID, TREATMENT, SDWIS_URI, OBJECTIVE, TREATMENT_EXPLAIN FROM ' + TABLE  + ' WHERE PWSID="' + str(pwsid) + '"'
      print(query)
      res = mysql.custom_query(query)
      if len(res) > 0:
@@ -187,19 +185,17 @@ def get_next(id):
         return res
 
 
-id = 1
 
-while (pwsid != 0):
-        pwsid = get_next(id)
-        #pwsid[0]['PWSID'] = 'MA6000000'
+def doit(pwsid):
+  if pwsid != 0:
+        #pwsid[0]['PWSID'] = '020000001'
         outfile = open('json/'+pwsid[0]['PWSID'] + ".json", "w")
-        print('id={}: PWSID={}'.format(id, pwsid))
+        print('PWSID={}'.format(pwsid))
 
         water_system = get_water_system(pwsid[0]['PWSID'], 'WATER_SYSTEMS')
 
         if not water_system:
-            id=id + 1
-            continue
+            return("no pwsid")
         outfile.write('{')
 
         aggregates = get_aggregates(pwsid[0]['PWSID'], 'AGGREGATES')
@@ -294,7 +290,8 @@ while (pwsid != 0):
         outfile.write(',')
 
         outfile.write('"SDWIS_PULLDATE": ')
-        json.dump("2017-08-17",outfile)
+        now = datetime.now()
+        json.dump(now.strftime("%Y-%m-%d"), outfile)
         outfile.write(',')
 
         outfile.write('"SDWIS_URI": ')
@@ -353,5 +350,45 @@ while (pwsid != 0):
         outfile.write('}')
         outfile.close()
         es(outfile)
-        id = id + 1
-exit()
+        os.remove(outfile.name)
+
+
+def worker(work_queue, done_queue):
+    try:
+        for i in iter(work_queue.get, 'STOP'):
+           pwsid = get_next(i)
+           print(pwsid)
+           doit(pwsid)
+    except Exception, e:
+        done_queue.put("%s failed on with: %s" % (current_process().name, e.message))
+    return True
+
+
+
+def main():
+    workers = 25
+    work_queue = Queue()
+    done_queue = Queue()
+    processes = []
+
+    for i in range(1,150000):
+        work_queue.put(i)
+
+    for w in xrange(workers):
+        p = Process(target=worker, args=(work_queue, done_queue))
+        p.start()
+        processes.append(p)
+        work_queue.put('STOP')
+
+    for p in processes:
+        p.join()
+
+    done_queue.put('STOP')
+
+    for status in iter(done_queue.get, 'STOP'):
+        print status
+
+
+if __name__ == '__main__':
+    main()
+
